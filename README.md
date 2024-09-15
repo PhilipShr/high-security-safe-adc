@@ -1,4 +1,5 @@
 # High security safe
+## Vera Loewe und Philip Schwengsbier
 
 This repo contains all files for the high security safe project for teaching embedded concepts.
 
