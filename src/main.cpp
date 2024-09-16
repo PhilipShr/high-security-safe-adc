@@ -3,7 +3,7 @@
 #include "keypad.h"
 #include "rotary_encoder.h"
 #include "pin_defs.h"
-
+#include "adc.h"
 
 void led_setup();
 void button_setup();
@@ -12,6 +12,21 @@ void check_states();
 
 void setup()
 {
+  // ADC
+
+  // Serielle Kommunikation initialisieren
+  Serial.begin(UART_BAUDRATE);
+
+  // ADC initialisieren
+  analogReadResolution(12); // 12-Bit-ADC
+
+  // Pin für die LED konfigurieren
+  pinMode(LED_PIN, OUTPUT);
+  digitalWrite(LED_PIN, LOW); // LED am Anfang aus
+
+  // Debug-Nachricht
+  Serial.println("System gestartet. Überwachung der Batteriespannung und LED...");
+
   led_setup();
   button_setup();
   setup_encoder(RE_PIN_A, RE_PIN_B, RE_SW);
@@ -23,18 +38,25 @@ int32_t last_encoder_state = 0;
 
 void loop()
 {
+  // ADC
+  ablauf();
+
   check_buttons();
   check_states();
   // Serial.printf("Counter: %d \n", counter);
-  if (Serial.available()){
+  if (Serial.available())
+  {
     uint8_t buf = Serial.read();
-    if (buf == '1') {
+    if (buf == '1')
+    {
       state_machine(INPUT_1_ACCEPTED);
     }
-    if (buf == '2'){
+    if (buf == '2')
+    {
       state_machine(INPUT_2_ACCEPTED);
     }
-    if (buf == '3'){
+    if (buf == '3')
+    {
       state_machine(INPUT_REFUSED);
     }
     //  ...
@@ -42,7 +64,8 @@ void loop()
   }
 
   int32_t encoder_state = get_encoder_state();
-  if (encoder_state != last_encoder_state) {
+  if (encoder_state != last_encoder_state)
+  {
     Serial.printf("Encoder state: %d \n", encoder_state);
     last_encoder_state = encoder_state;
   }
@@ -65,7 +88,6 @@ void button_setup()
   pinMode(BTN_3_PIN, INPUT);
   pinMode(BTN_4_PIN, INPUT);
 }
-
 
 void check_buttons()
 {
