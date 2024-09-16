@@ -29,5 +29,4 @@
 #define KEYPAD_COL_3 PA8
 #define KEYPAD_COL_4 PB10
 
-
-#endif //PIN_DEFS_H
+#endif // PIN_DEFS_H
