@@ -43,12 +43,20 @@ void ledBlinken(float batterieSpannung, unsigned long aktuelleZeit)
         if (aktuelleZeit - letzte_blinkzeit >= blink_interval)
         {
             digitalWrite(LED_PIN_ADC, !digitalRead(LED_PIN_ADC)); // LED umschalten
+<<<<<<< HEAD
             letzte_blinkzeit = aktuelleZeit;
+=======
+            letzte_blinkzeit = aktuelleZeit;                      // Letzte Blink-Zeit aktualisieren
+>>>>>>> 80d3962b726ef60299a5119174fea991cfd4a426
         }
     }
     else
     {
+<<<<<<< HEAD
         // LED ausschalten
+=======
+        // Wenn die Spannung über dem kritischen Wert ist, LED ausschalten
+>>>>>>> 80d3962b726ef60299a5119174fea991cfd4a426
         digitalWrite(LED_PIN_ADC, LOW);
     }
 }
