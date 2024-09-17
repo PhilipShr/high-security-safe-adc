@@ -1,12 +1,15 @@
 #ifndef PIN_DEFS_H
 #define PIN_DEFS_H
 
+// Pin definieren ADC
+#define BATTERY_ADC_PIN PA1
+
 // Pins for status LEDs
 #define LED_RED_LOCKED_PIN PC9
 #define LED_GREEN_LOCK_1_PIN PC8
 #define LED_GREEN_LOCK_2_PIN PC6
 #define LED_GREEN_LOCK_3_PIN PC5
-
+#define LED_PIN_ADC PB8
 // Pins for Testing buttons
 #define BTN_1_PIN PC0
 #define BTN_2_PIN PC1

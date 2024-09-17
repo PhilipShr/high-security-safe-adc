@@ -12,17 +12,6 @@ void check_states();
 
 void setup()
 {
-  // ADC
-
-  // Serielle Kommunikation initialisieren
-  Serial.begin(UART_BAUDRATE);
-
-  // ADC initialisieren
-  analogReadResolution(12); // 12-Bit-ADC
-
-  // Pin für die LED konfigurieren
-  pinMode(LED_PIN, OUTPUT);
-  digitalWrite(LED_PIN, LOW); // LED am Anfang aus
 
   // Debug-Nachricht
   Serial.println("System gestartet. Überwachung der Batteriespannung und LED...");
@@ -32,6 +21,9 @@ void setup()
   setup_encoder(RE_PIN_A, RE_PIN_B, RE_SW);
   keypad_setup_pins();
   Serial.begin(115200);
+  // ADC initialisieren
+  analogReadResolution(12);       // 12-Bit-ADC
+  digitalWrite(LED_PIN_ADC, LOW); // LED am Anfang aus
 }
 
 int32_t last_encoder_state = 0;
@@ -78,6 +70,7 @@ void led_setup()
   pinMode(LED_GREEN_LOCK_1_PIN, OUTPUT);
   pinMode(LED_GREEN_LOCK_2_PIN, OUTPUT);
   pinMode(LED_GREEN_LOCK_3_PIN, OUTPUT);
+  pinMode(LED_PIN_ADC, OUTPUT);
 }
 
 void button_setup()

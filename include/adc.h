@@ -3,11 +3,6 @@
 
 #include <Arduino.h>
 
-// Pins definieren
-#define BATTERY_ADC_PIN PA1
-#define LED_PIN PB8
-#define UART_BAUDRATE 9600
-
 // Spannungsteiler-Werte
 extern float R1;
 extern float R2;

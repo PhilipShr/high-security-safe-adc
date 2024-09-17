@@ -1,5 +1,5 @@
 #include "adc.h"
-
+#include "pin_defs.h"
 // Spannungsteiler
 float R1 = 6200.0;
 float R2 = 3000.0;
@@ -42,14 +42,14 @@ void ledBlinken(float batterieSpannung, unsigned long aktuelleZeit)
     {
         if (aktuelleZeit - letzte_blinkzeit >= blink_interval)
         {
-            digitalWrite(LED_PIN, !digitalRead(LED_PIN)); // LED umschalten
-            letzte_blinkzeit = aktuelleZeit;              // Letzte Blink-Zeit aktualisieren
+            digitalWrite(LED_PIN_ADC, !digitalRead(LED_PIN_ADC)); // LED umschalten
+            letzte_blinkzeit = aktuelleZeit;                      // Letzte Blink-Zeit aktualisieren
         }
     }
     else
     {
         // Wenn die Spannung über dem kritischen Wert ist, LED ausschalten
-        digitalWrite(LED_PIN, LOW);
+        digitalWrite(LED_PIN_ADC, LOW);
     }
 }
 // Der Ablauf
